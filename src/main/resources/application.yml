@@ -1,0 +1,52 @@
+#spring:
+#  datasource:
+#    dynamic:
+#      primary: users
+#      datasource:
+#        orders:
+#          url: jdbc:mysql://127.0.0.1:3306/test_orders?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: root
+#          password: admin
+#        users:
+#          url: jdbc:mysql://127.0.0.1:3306/test_users?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          username: root
+#          password: admin
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.dynamic.dataobject
+spring:
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: yang
+        login-password: yang
+    dynamic:
+      druid:
+        filters: stat
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000
+      primary: users
+      datasource:
+        orders:
+          url: jdbc:mysql://127.0.0.1:3306/test_orders?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: admin
+          druid:
+            min-idle: 0
+            max-active: 20
+        users:
+          url: jdbc:mysql://127.0.0.1:3306/test_users?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: admin
+          druid:
+            min-idle: 0
+            max-active: 20
+
